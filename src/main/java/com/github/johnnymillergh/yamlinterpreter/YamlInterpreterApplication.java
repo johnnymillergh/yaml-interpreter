@@ -1,6 +1,7 @@
 package com.github.johnnymillergh.yamlinterpreter;
 
 import com.github.johnnymillergh.yamlinterpreter.command.LoginCommand;
+import com.github.johnnymillergh.yamlinterpreter.command.YamlInterpreterCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -19,6 +20,7 @@ import picocli.CommandLine;
 @RequiredArgsConstructor
 public class YamlInterpreterApplication implements CommandLineRunner {
     private final LoginCommand loginCommand;
+    private final YamlInterpreterCommand yamlInterpreterCommand;
 
     public static void main(String[] args) {
         SpringApplication.run(YamlInterpreterApplication.class, args);
@@ -26,7 +28,7 @@ public class YamlInterpreterApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        CommandLine commandLine = new CommandLine(loginCommand);
+        CommandLine commandLine = new CommandLine(yamlInterpreterCommand);
         try {
             commandLine.execute(args);
             val executionResult = commandLine.getExecutionResult();
